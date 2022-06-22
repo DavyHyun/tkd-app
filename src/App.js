@@ -2,7 +2,7 @@ import './App.css';
 import React from 'react';
 import MainComp from './Main';
 import StartComp from './Start';
-import GamePad from './GamePad'
+import GamePad from './GamePadTest'
 import { BrowserRouter as Router, Switch, Route, Routes } from 'react-router-dom'; 
 
 function App() {
