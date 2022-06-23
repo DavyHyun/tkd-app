@@ -14,7 +14,6 @@ function MyTimer({expiryTimestamp, onExpire, autoStart}) {
     resume,
     restart,
   } = useTimer({ expiryTimestamp, onExpire, autoStart});
-  console.log(expiryTimestamp);
 
   return (
     <div className="timner-container">

@@ -7,11 +7,11 @@ function Start() {
     const navigate = useNavigate();
     const [redName, setRedName] = useState('');
     const [blueName, setBlueName] = useState('');
-    const [rounds, setRounds] = useState("1");
+    const [rounds, setRounds] = useState(1);
     const [timer, setTime] = useState(60);
 
     const startGame = () => {
-        navigate("/main", {state:{redName:redName, blueName:blueName, rounds:rounds, timer: timer}})
+        navigate("/round1", {state:{redName:redName, blueName:blueName, rounds:rounds, timer: timer}})
     }
 
 
@@ -41,9 +41,9 @@ function Start() {
                  value={rounds}
                  onChange={(e) => setRounds(e.target.value)}
             >
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
+                <option value={1}>1</option>
+                <option value={2}>2</option>
+                <option value={3}>3</option>
             </select>
             <label>Time per Round:</label>
             <select
