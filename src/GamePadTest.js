@@ -1,16 +1,20 @@
 import * as React from "react";
 import GamePad from "react-gamepad";
 import {useState, useEffect} from 'react';
+import {useLocation} from 'react-router-dom';
+import './Scorer.css';
+
+import Timer from './MyTimer';
 
 const { log } = console;
 
 
 
 function GamePadTest() {
-
   const [increment, setInc] = useState(0);
   const [p1Fire, setp1Fire] = useState(0);
   const [p2Fire, setp2Fire] = useState(0);
+
   const handleConnect = (index) => {
     log(`Connected - Device ${index}`);
   };
@@ -77,7 +81,6 @@ function GamePadTest() {
           <main></main>
         </GamePad>
       </span>
-      {increment}
     </div>
   );}
 

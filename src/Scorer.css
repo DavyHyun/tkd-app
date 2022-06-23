@@ -1,0 +1,120 @@
+.split {
+    height: 100%;
+    width: 50%;
+    position: fixed;
+    z-index: 0;
+    top: 0;
+    overflow-x: hidden;
+    padding-top: 20px;
+    display:flex;
+  }
+  
+  .left {
+    left: 0;
+    background-color: rgb(80, 85, 233);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+
+  }
+  
+  .right {
+    right: 0;
+    background-color: rgb(205, 83, 83);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  #overlay {
+    position:relative;
+    width: 40%;
+    left: 30%;
+    border: 1px solid white
+  }
+
+  .over {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .roundBar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    width:100%;
+    height: 50px;
+    border: none;
+    border-bottom: 1px solid white;
+  }
+
+  .incrementBtns {
+    flex-direction: row;
+    display: flex;
+    justify-content: space-evenly;
+    height: 60px;
+    width: 50%;
+    margin-right: 40%;
+  }
+
+  .incrementBtns2 {
+    flex-direction: row;
+    display: flex;
+    justify-content: space-evenly;
+    height: 60px;
+    width: 50%;
+    margin-left: 45%;
+  }
+  /* .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  } */
+
+  .incrementBtns button {
+    background-color: white;
+    width: 30%;
+    border-radius: 50px;
+    border: none;
+  }
+
+  .nameBar {
+    width: 100%;
+    height: 20%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    border-top: 1px solid white;
+  }
+
+  
+
+  .incrementBtns2 button {
+    background-color: white;
+    width: 30%;
+    border-radius: 50px;
+    border: none;
+  }
+
+  .incrementBtns button:hover {
+    background-color: rgb(228, 228, 228);
+  }
+
+  .incrementBtns2 button:hover {
+    background-color: rgb(228, 228, 228);
+  }
+
+  .score {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+    margin-bottom: 10%;
+  }
