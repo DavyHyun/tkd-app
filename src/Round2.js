@@ -343,7 +343,7 @@ if (p1FireLB === 1) {
     } else if (seconds === "120") {
       time.setSeconds(time.getSeconds() + 120);
     } else {
-      time.setSeconds(time.getSeconds() + 5);
+      time.setSeconds(time.getSeconds() + 60);
     }
    
     
