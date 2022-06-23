@@ -14,6 +14,9 @@ function Main() {
   const [p1Fire, setp1Fire] = useState(0);
   const [p2Fire, setp2Fire] = useState(0);
   const [round, setRounds] = useState(1);
+  const [redScore, setRedScore] = useState(0);
+  const [blueScore, setBlueScore] = useState(0);
+
   const maxRounds = location.state.rounds;
 
   const handleConnect = (index) => {
@@ -56,7 +59,6 @@ function Main() {
       setTimeout(() => setp2Fire(0), 2000);
     }
   }
-    const [play, setPlay] = useState(false);
     const time = new Date();
     const seconds = location.state.timer;
     console.log(seconds)
@@ -71,6 +73,26 @@ function Main() {
     
     const done = () => {
       alert("expiredd")
+    }
+
+    const blueAdd = () => {
+      var score = blueScore + 1;
+      setBlueScore(score);
+    }
+
+    const blueSub = () => {
+      var score = blueScore - 1;
+      setBlueScore(score);
+    }
+
+    const redAdd = () => {
+      var score = redScore + 1;
+      setRedScore(score);
+    }
+
+    const redSub = () => {
+      var score = redScore - 1;
+      setRedScore(score);
     }
     
 
@@ -104,10 +126,10 @@ function Main() {
         
         <div class="split left">
           <div class="incrementBtns">
-            <button style={{fontSize: '30px'}}>+</button>
-            <button style={{fontSize: '30px'}}>-</button>
+            <button onClick={blueAdd} style={{fontSize: '30px'}}>+</button>
+            <button onClick={blueSub} style={{fontSize: '30px'}}>-</button>
           </div>
-          <div className="score"><h1 style={{fontSize: '300px', marginTop: '50%', marginRight: '10%' }}>1</h1></div> 
+          <div className="score"><h1 style={{fontSize: '300px', marginTop: '50%', marginRight: '10%' }}>{blueScore}</h1></div> 
           <div className="nameBar">
             <h1 style={{color: 'white', fontSize: '50px'}}>{location.state.blueName}</h1>
           </div>
@@ -115,10 +137,10 @@ function Main() {
 
         <div class="split right">
         <div class="incrementBtns2">
-            <button style={{fontSize: '30px'}}>+</button>
-            <button style={{fontSize: '30px'}}>-</button>
+            <button onClick={redAdd} style={{fontSize: '30px'}}>+</button>
+            <button onClick={redSub} style={{fontSize: '30px'}}>-</button>
           </div>
-          <div className="score"><h1 style={{fontSize: '300px', marginTop: '50%', marginLeft: '10%' }}>1</h1></div>    
+          <div className="score"><h1 style={{fontSize: '300px', marginTop: '50%', marginLeft: '10%' }}>{redScore}</h1></div>    
           <div className="nameBar">
             <h1 style={{color: 'white', fontSize: '50px'}}>{location.state.redName}</h1>
           </div>
