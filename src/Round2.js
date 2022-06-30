@@ -6,56 +6,51 @@ import { CountdownCircleTimer} from "react-countdown-circle-timer";
 import Timer from './MyTimer';
 import { flushSync } from 'react-dom';
 import { useNavigate } from 'react-router-dom';
-import Modal from 'react-modal';
-import Clip from './scoreSound.mp3';
+import Modal from 'react-modal'
 import {Howl, Howler} from 'howler';
+import Clip from './scoreSound.mp3';
 const { log } = console;
+
 const customStyles = {
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      padding: '200px',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-    },
-  };
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    padding: '200px',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+  },
+};
+
 function Round2() {
+
+
   const location = useLocation();
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const [increment, setInc] = useState(0);
 
 
-  const [p1FireA, setp1FireA] = useState(0);
-  const [p2FireA, setp2FireA] = useState(0);
-  const [p1FireB, setp1FireB] = useState(0);
-  const [p2FireB, setp2FireB] = useState(0);
-  const [p1FireY, setp1FireY] = useState(0);
-  const [p2FireY, setp2FireY] = useState(0);
-  const [p1FireX, setp1FireX] = useState(0);
-  const [p2FireX, setp2FireX] = useState(0);
-  const [p1FireRB, setp1FireRB] = useState(0);
-  const [p2FireRB, setp2FireRB] = useState(0);
-  const [p1FireDown, setp1FireDown] = useState(0);
-  const [p2FireDown, setp2FireDown] = useState(0);
-  const [p1FireLeft, setp1FireLeft] = useState(0);
-  const [p2FireLeft, setp2FireLeft] = useState(0);
-  const [p1FireUp, setp1FireUp] = useState(0);
-  const [p2FireUp, setp2FireUp] = useState(0);
-  const [p1FireRight, setp1FireRight] = useState(0);
-  const [p2FireRight, setp2FireRight] = useState(0);
-  const [p1FireLB, setp1FireLB] = useState(0);
-  const [p2FireLB, setp2FireLB] = useState(0);
+  const [aPress, setAPress] = useState(0);
+  const [bPress, setBPress] = useState(0);
+  const [yPress, setYPress] = useState(0);
+  const [xPress, setXPress] = useState(0);
+  const [rbPress, setRBPress] = useState(0);
+  const [dPress, setDPress] = useState(0);
+  const [lPress, setLPress] = useState(0);
+  const [uPress, setUPress] = useState(0);
+  const [rPress, setRPress] = useState(0);
+  const [lbPress, setLBPress] = useState(0);
+
 
 
   const [round, setRounds] = useState(2);
-  const [redScore, setRedScore] = useState(location.state.redScore);
-  const [blueScore, setBlueScore] = useState(location.state.blueScore);
+  const [redScore, setRedScore] = useState(0);
+  const [blueScore, setBlueScore] = useState(0);
   const [winner, setWinner] = useState("");
   const [test, setTest] = useState(0);
 
@@ -69,7 +64,8 @@ function Round2() {
       sound.play();
     }
     setTest(1);
-  }, [redScore, blueScore])
+  }, [blueScore, redScore])
+
 
   const handleConnect = (index) => {
     log(`Connected - Device ${index}`);
@@ -88,254 +84,311 @@ function Round2() {
   };
   
   const red1 = () => {
-      if (p2FireA === 1) {
-        var inc = redScore + 1;
-        setRedScore(inc);
-        setp1FireA(0);
-        setp2FireA(0);
+      if (location.state.controllers === 1) {
+          var inc = redScore + 1;
+          setRedScore(inc);
+      } else if (location.state.controllers + "" === "2") {
+        if (aPress > 0) {
+          var incr = redScore + 1;
+          setRedScore(incr);
+          setAPress(0);
+        } else {
+          var incre = aPress + 1;
+          setAPress(incre);
+          setTimeout(() => setAPress(0), 2000);
+        }
       } else {
-        setp1FireA(1);
-        setTimeout(() => setp1FireA(0), 2000);
+        if (aPress >= 2) {
+          var increment = redScore + 1;
+          setRedScore(increment);
+          setAPress(0);
+        } else if (aPress === 1) {
+          var incrementt = aPress + 1;
+          setAPress(incrementt);
+        } else {
+          var i = aPress + 1;
+          setAPress(i);
+          setTimeout(() => setAPress(0), 2000);
+        }
       }
-
+  }
   
-  }
-  const red11 = () => {
-    if (p1FireA === 1) {
-      var inc = redScore + 1;
-      setRedScore(inc);
-      setp1FireA(0);
-      setp2FireA(0);
-    } else {
-      setp2FireA(1);
-      setTimeout(() => setp2FireA(0), 2000);
-    }
-  }
-
   const red2 = () => {
-    if (p2FireB === 1) {
+    if (location.state.controllers === 1) {
       var inc = redScore + 2;
       setRedScore(inc);
-      setp1FireB(0);
-      setp2FireB(0);
+  } else if (location.state.controllers + "" === "2") {
+    if (bPress > 0) {
+      var incr = redScore + 2;
+      setRedScore(incr);
+      setBPress(0);
     } else {
-      setp1FireB(1);
-      setTimeout(() => setp1FireB(0), 2000);
+      var incre = bPress + 1;
+      setBPress(incre);
+      setTimeout(() => setBPress(0), 2000);
     }
-
-
-}
-const red22 = () => {
-  if (p1FireB === 1) {
-    var inc = redScore + 2;
-    setRedScore(inc);
-    setp1FireB(0);
-    setp2FireB(0);
   } else {
-    setp2FireB(1);
-    setTimeout(() => setp2FireB(0), 2000);
+    if (bPress >= 2) {
+      var increment = redScore + 2;
+      setRedScore(increment);
+      setBPress(0);
+    } else if (bPress === 1) {
+      var incrementt = bPress + 1;
+      setBPress(incrementt);
+    } else {
+      var i = bPress + 1;
+      setBPress(i);
+      setTimeout(() => setBPress(0), 2000);
+    }
   }
 }
+
 
 const red3 = () => {
-  if (p2FireY === 1) {
+  if (location.state.controllers === 1) {
     var inc = redScore + 3;
     setRedScore(inc);
-    setp1FireY(0);
-    setp2FireY(0);
+} else if (location.state.controllers + "" === "2") {
+  if (yPress > 0) {
+    var incr = redScore + 3;
+    setRedScore(incr);
+    setYPress(0);
   } else {
-    setp1FireY(1);
-    setTimeout(() => setp1FireY(0), 2000);
+    var incre = yPress + 1;
+    setYPress(incre);
+    setTimeout(() => setYPress(0), 2000);
   }
-
-
-}
-const red33 = () => {
-if (p1FireY === 1) {
-  var inc = redScore + 3;
-  setRedScore(inc);
-  setp1FireY(0);
-  setp2FireY(0);
 } else {
-  setp2FireY(1);
-  setTimeout(() => setp2FireY(0), 2000);
+  if (yPress >= 2) {
+    var increment = redScore + 3;
+    setRedScore(increment);
+    setYPress(0);
+  } else if (yPress === 1) {
+    var incrementt = yPress + 1;
+    setYPress(incrementt);
+  } else {
+    var i = yPress + 1;
+    setYPress(i);
+    setTimeout(() => setYPress(0), 2000);
+  }
 }
 }
 
 const red4 = () => {
-  if (p2FireX === 1) {
+  if (location.state.controllers === 1) {
     var inc = redScore + 4;
     setRedScore(inc);
-    setp1FireX(0);
-    setp2FireX(0);
+} else if (location.state.controllers + "" === "2") {
+  if (xPress > 0) {
+    var incr = redScore + 4;
+    setRedScore(incr);
+    setXPress(0);
   } else {
-    setp1FireX(1);
-    setTimeout(() => setp1FireX(0), 2000);
+    var incre = xPress + 1;
+    setXPress(incre);
+    setTimeout(() => setXPress(0), 2000);
   }
-
-
-}
-const red44 = () => {
-if (p1FireX === 1) {
-  var inc = redScore + 4;
-  setRedScore(inc);
-  setp1FireX(0);
-  setp2FireX(0);
 } else {
-  setp2FireX(1);
-  setTimeout(() => setp2FireX(0), 2000);
+  if (xPress >= 2) {
+    var increment = redScore + 4;
+    setRedScore(increment);
+    setXPress(0);
+  } else if (xPress === 1) {
+    var incrementt = xPress + 1;
+    setXPress(incrementt);
+  } else {
+    var i = xPress + 1;
+    setXPress(i);
+    setTimeout(() => setXPress(0), 2000);
+  }
 }
 }
+
 
 const red5 = () => {
-  if (p2FireRB === 1) {
+  if (location.state.controllers === 1) {
     var inc = redScore + 5;
     setRedScore(inc);
-    setp1FireRB(0);
-    setp2FireRB(0);
+} else if (location.state.controllers + "" === "2") {
+  if (rbPress > 0) {
+    var incr = redScore + 5;
+    setRedScore(incr);
+    setRBPress(0);
   } else {
-    setp1FireRB(1);
-    setTimeout(() => setp1FireRB(0), 2000);
+    var incre = rbPress + 1;
+    setRBPress(incre);
+    setTimeout(() => setRBPress(0), 2000);
   }
-
-
-}
-const red55 = () => {
-if (p1FireRB === 1) {
-  var inc = redScore + 5;
-  setRedScore(inc);
-  setp1FireRB(0);
-  setp2FireRB(0);
 } else {
-  setp2FireRB(1);
-  setTimeout(() => setp2FireRB(0), 2000);
+  if (rbPress >= 2) {
+    var increment = redScore + 5;
+    setRedScore(increment);
+    setRBPress(0);
+  } else if (rbPress === 1) {
+    var incrementt = rbPress + 1;
+    setRBPress(incrementt);
+  } else {
+    var i = rbPress + 1;
+    setRBPress(i);
+    setTimeout(() => setRBPress(0), 2000);
+  }
 }
 }
+
 
 const blue1 = () => {
-  if (p2FireDown === 1) {
+  if (location.state.controllers === 1) {
     var inc = blueScore + 1;
     setBlueScore(inc);
-    setp1FireDown(0);
-    setp2FireDown(0);
+} else if (location.state.controllers + "" === "2") {
+  if (dPress > 0) {
+    var incr = blueScore + 1;
+    setBlueScore(incr);
+    setDPress(0);
   } else {
-    setp1FireDown(1);
-    setTimeout(() => setp1FireDown(0), 2000);
+    var incre = dPress + 1;
+    setDPress(incre);
+    setTimeout(() => setDPress(0), 2000);
   }
-
-
-}
-const blue11 = () => {
-if (p1FireDown === 1) {
-  var inc = blueScore + 1;
-  setBlueScore(inc);
-  setp1FireDown(0);
-  setp2FireDown(0);
 } else {
-  setp2FireDown(1);
-  setTimeout(() => setp2FireDown(0), 2000);
+  if (dPress >= 2) {
+    var increment = blueScore + 1;
+    setBlueScore(increment);
+    setDPress(0);
+  } else if (dPress === 1) {
+    var incrementt = dPress + 1;
+    setDPress(incrementt);
+  } else {
+    var i = dPress + 1;
+    setDPress(i);
+    setTimeout(() => setDPress(0), 2000);
+  }
 }
 }
+
 
 const blue2 = () => {
-  if (p2FireLeft === 1) {
-    var inc = blueScore + 2;
+  if (location.state.controllers === 1) {
+    var inc = blueScore + 1;
     setBlueScore(inc);
-    setp1FireLeft(0);
-    setp2FireLeft(0);
+} else if (location.state.controllers + "" === "2") {
+  if (lPress > 0) {
+    var incr = blueScore + 1;
+    setBlueScore(incr);
+    setLPress(0);
   } else {
-    setp1FireLeft(1);
-    setTimeout(() => setp1FireLeft(0), 2000);
+    var incre = lPress + 1;
+    setLPress(incre);
+    setTimeout(() => setLPress(0), 2000);
   }
-
-
-}
-const blue22 = () => {
-if (p1FireLeft === 1) {
-  var inc = blueScore + 2;
-  setBlueScore(inc);
-  setp1FireLeft(0);
-  setp2FireLeft(0);
 } else {
-  setp2FireLeft(1);
-  setTimeout(() => setp2FireLeft(0), 2000);
+  if (lPress >= 2) {
+    var increment = blueScore + 1;
+    setBlueScore(increment);
+    setLPress(0);
+  } else if (lPress === 1) {
+    var incrementt = lPress + 1;
+    setLPress(incrementt);
+  } else {
+    var i = lPress + 1;
+    setLPress(i);
+    setTimeout(() => setLPress(0), 2000);
+  }
 }
 }
+
 
 const blue3 = () => {
-  if (p2FireUp === 1) {
-    var inc = blueScore + 3;
+  if (location.state.controllers === 1) {
+    var inc = blueScore + 1;
     setBlueScore(inc);
-    setp1FireUp(0);
-    setp2FireUp(0);
+} else if (location.state.controllers + "" === "2") {
+  if (uPress > 0) {
+    var incr = blueScore + 1;
+    setBlueScore(incr);
+    setUPress(0);
   } else {
-    setp1FireUp(1);
-    setTimeout(() => setp1FireUp(0), 2000);
+    var incre = uPress + 1;
+    setUPress(incre);
+    setTimeout(() => setUPress(0), 2000);
   }
-
-
-}
-const blue33 = () => {
-if (p1FireUp === 1) {
-  var inc = blueScore + 3;
-  setBlueScore(inc);
-  setp1FireUp(0);
-  setp2FireUp(0);
 } else {
-  setp2FireUp(1);
-  setTimeout(() => setp2FireUp(0), 2000);
+  if (uPress >= 2) {
+    var increment = blueScore + 1;
+    setBlueScore(increment);
+    setUPress(0);
+  } else if (uPress === 1) {
+    var incrementt = uPress + 1;
+    setUPress(incrementt);
+  } else {
+    var i = uPress + 1;
+    setUPress(i);
+    setTimeout(() => setUPress(0), 2000);
+  }
 }
 }
+
 
 const blue4 = () => {
-  if (p2FireRight === 1) {
-    var inc = blueScore + 4;
+  if (location.state.controllers === 1) {
+    var inc = blueScore + 1;
     setBlueScore(inc);
-    setp1FireRight(0);
-    setp2FireRight(0);
+} else if (location.state.controllers + "" === "2") {
+  if (rPress > 0) {
+    var incr = blueScore + 1;
+    setBlueScore(incr);
+    setRPress(0);
   } else {
-    setp1FireRight(1);
-    setTimeout(() => setp1FireRight(0), 2000);
+    var incre = rPress + 1;
+    setRPress(incre);
+    setTimeout(() => setRPress(0), 2000);
   }
-
-
-}
-const blue44 = () => {
-if (p1FireRight === 1) {
-  var inc = blueScore + 4;
-  setBlueScore(inc);
-  setp1FireRight(0);
-  setp2FireRight(0);
 } else {
-  setp2FireRight(1);
-  setTimeout(() => setp2FireRight(0), 2000);
+  if (rPress >= 2) {
+    var increment = blueScore + 1;
+    setBlueScore(increment);
+    setRPress(0);
+  } else if (rPress === 1) {
+    var incrementt = rPress + 1;
+    setRPress(incrementt);
+  } else {
+    var i = rPress + 1;
+    setRPress(i);
+    setTimeout(() => setRPress(0), 2000);
+  }
 }
 }
 
 const blue5 = () => {
-  if (p2FireLB === 1) {
-    var inc = blueScore + 5;
+  if (location.state.controllers === 1) {
+    var inc = blueScore + 1;
     setBlueScore(inc);
-    setp1FireLB(0);
-    setp2FireLB(0);
+} else if (location.state.controllers + "" === "2") {
+  if (lbPress > 0) {
+    var incr = blueScore + 1;
+    setBlueScore(incr);
+    setLBPress(0);
   } else {
-    setp1FireLB(1);
-    setTimeout(() => setp1FireLB(0), 2000);
+    var incre = lbPress + 1;
+    setLBPress(incre);
+    setTimeout(() => setLBPress(0), 2000);
   }
-
-
-}
-const blue55 = () => {
-if (p1FireLB === 1) {
-  var inc = blueScore + 5;
-  setBlueScore(inc);
-  setp1FireLB(0);
-  setp2FireLB(0);
 } else {
-  setp2FireLB(1);
-  setTimeout(() => setp2FireLB(0), 2000);
+  if (lbPress >= 2) {
+    var increment = blueScore + 1;
+    setBlueScore(increment);
+    setLBPress(0);
+  } else if (lbPress === 1) {
+    var incrementt = lbPress + 1;
+    setLBPress(incrementt);
+  } else {
+    var i = lbPress + 1;
+    setLBPress(i);
+    setTimeout(() => setLBPress(0), 2000);
+  }
 }
 }
+
     const time = new Date();
     const seconds = location.state.timer;
     if (seconds === "90") { 
@@ -348,29 +401,27 @@ if (p1FireLB === 1) {
    
     
     const done = () => {
-        console.log(maxRounds)
-        console.log(round)
-      if (maxRounds + "" === round + "") {
-        if (redScore > blueScore) {
-            setWinner("RED");
-          } else {
-            setWinner("BLUE");
-          }
-          setShow(true);
+      if (location.state.rounds === 1) {
+        if (blueScore > blueScore) {
+          setWinner("RED");
+        } else {
+          setWinner("BLUE");
+        }
+        setShow(true);
       } else {
-        navigate("/round3", {state:{redName:location.state.redName, blueName:location.state.blueName, rounds:location.state.rounds, timer: location.state.timer, blueScore: blueScore, redScore: redScore}});
+        navigate("/round2", {state:{redName:location.state.redName, blueName:location.state.blueName, rounds:location.state.rounds, timer: location.state.timer, controllers: location.state.controllers, blueScore: blueScore, blueScore: blueScore}});
       }
     }
 
     const redWin = () => {
-        setWinner("RED");
-        setShow(true);
-      }
-  
-      const blueWin = () => {
-        setWinner("BLUE");
-        setShow(true);
-      }
+      setWinner("RED");
+      setShow(true);
+    }
+
+    const blueWin = () => {
+      setWinner("BLUE");
+      setShow(true);
+    }
 
     const blueAdd = () => {
       var score = blueScore + 1;
@@ -383,19 +434,19 @@ if (p1FireLB === 1) {
     }
 
     const redAdd = () => {
-      var score = redScore + 1;
-      setRedScore(score);
+      var score = blueScore + 1;
+      setBlueScore(score);
     }
 
     const redSub = () => {
-      var score = redScore - 1;
-      setRedScore(score);
+      var score = blueScore - 1;
+      setBlueScore(score);
     }
     
 
   return (
     <div className="over">
-            <span>
+      <span>
         <GamePad
          gamepadIndex={0}
           onConnect={handleConnect}
@@ -423,25 +474,49 @@ if (p1FireLB === 1) {
           onDisconnect={handleDisconnect}
           onButtonChange={handleButton}
           onAxisChange={handleAxis}
-          onA={red11}
-          onB={red22}
-          onY={red33}
-          onX={red44}
-          onRB={red55}
-          onDown={blue11}
-          onLeft={blue22}
-          onUp={blue33}
-          onRight={blue44}
-          onLB={blue55}
+          onA={red1}
+          onB={red2}
+          onY={red3}
+          onX={red4}
+          onRB={red5}
+          onDown={blue1}
+          onLeft={blue2}
+          onUp={blue3}
+          onRight={blue4}
+          onLB={blue5}
         >
           <main></main>
         </GamePad>
       </span>
+      <span>
+        <GamePad
+         gamepadIndex={2}
+          onConnect={handleConnect}
+          onDisconnect={handleDisconnect}
+          onButtonChange={handleButton}
+          onAxisChange={handleAxis}
+          onA={red1}
+          onB={red2}
+          onY={red3}
+          onX={red4}
+          onRB={red5}
+          onDown={blue1}
+          onLeft={blue2}
+          onUp={blue3}
+          onRight={blue4}
+          onLB={blue5}
+        >
+          <main></main>
+        </GamePad>
+      </span>
+
       <div>
-      <Modal isOpen={show} style={customStyles}>
+
+        <Modal isOpen={show} style={customStyles}>
           <h2 style={{fontSize: '60px'}}>{winner} wins! </h2>
           <button onClick={()=>{setShow(false); navigate("/")}}>Return</button>
         </Modal>
+        
         <div class="split left">
           <div class="incrementBtns">
             <button onClick={blueAdd} style={{fontSize: '30px'}}>+</button>
@@ -467,7 +542,7 @@ if (p1FireLB === 1) {
       </div>
       <div id="overlay">
         <div className="roundBar">
-        <button onClick={blueWin}><span style={{color: "blue"}}>win</span></button>
+            <button onClick={blueWin}><span style={{color: "blue"}}>win</span></button>
             <span style={{color: "white", fontSize: '25px', textAlign: 'center', fontWeight: 'bold'}}>Round {round}</span>
             <button onClick={redWin}><span style={{color: "red"}}>win</span></button>
         </div>
