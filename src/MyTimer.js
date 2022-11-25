@@ -23,6 +23,7 @@ function MyTimer({expiryTimestamp, onExpire, autoStart}) {
       <div className='button-container'>
       <button onClick={start}>Start</button>
       <button onClick={pause}>Stop</button>
+      <button onClick={resume}>Resume</button>
       </div>
     </div>
   );

@@ -56,15 +56,15 @@ function Round1() {
 
   const maxRounds = location.state.rounds;
 
-  useEffect(()=> {
-    if (!(test === 0)) {
-      var sound = new Howl({
-        src: [Clip]
-      })
-      sound.play();
-    }
-    setTest(1);
-  }, [blueScore, redScore])
+  // useEffect(()=> {
+  //   if (!(test === 0)) {
+  //     var sound = new Howl({
+  //       src: [Clip]
+  //     })
+  //     sound.play();
+  //   }
+  //   setTest(1);
+  // }, [blueScore, redScore])
 
 
   const handleConnect = (index) => {
@@ -85,9 +85,10 @@ function Round1() {
   
   const red1 = () => {
       if (location.state.controllers === 1) {
+          log(location.state.controllers);
           var inc = redScore + 1;
           setRedScore(inc);
-      } else if (location.state.controllers + "" === "2") {
+      } else {
         if (aPress > 0) {
           var incr = redScore + 1;
           setRedScore(incr);
@@ -97,19 +98,6 @@ function Round1() {
           setAPress(incre);
           setTimeout(() => setAPress(0), 2000);
         }
-      } else {
-        if (aPress >= 2) {
-          var increment = redScore + 1;
-          setRedScore(increment);
-          setAPress(0);
-        } else if (aPress === 1) {
-          var incrementt = aPress + 1;
-          setAPress(incrementt);
-        } else {
-          var i = aPress + 1;
-          setAPress(i);
-          setTimeout(() => setAPress(0), 2000);
-        }
       }
   }
   
@@ -117,7 +105,7 @@ function Round1() {
     if (location.state.controllers === 1) {
       var inc = redScore + 2;
       setRedScore(inc);
-  } else if (location.state.controllers + "" === "2") {
+  } else {
     if (bPress > 0) {
       var incr = redScore + 2;
       setRedScore(incr);
@@ -127,20 +115,7 @@ function Round1() {
       setBPress(incre);
       setTimeout(() => setBPress(0), 2000);
     }
-  } else {
-    if (bPress >= 2) {
-      var increment = redScore + 2;
-      setRedScore(increment);
-      setBPress(0);
-    } else if (bPress === 1) {
-      var incrementt = bPress + 1;
-      setBPress(incrementt);
-    } else {
-      var i = bPress + 1;
-      setBPress(i);
-      setTimeout(() => setBPress(0), 2000);
-    }
-  }
+  } 
 }
 
 
@@ -148,7 +123,7 @@ const red3 = () => {
   if (location.state.controllers === 1) {
     var inc = redScore + 3;
     setRedScore(inc);
-} else if (location.state.controllers + "" === "2") {
+} else {
   if (yPress > 0) {
     var incr = redScore + 3;
     setRedScore(incr);
@@ -158,19 +133,6 @@ const red3 = () => {
     setYPress(incre);
     setTimeout(() => setYPress(0), 2000);
   }
-} else {
-  if (yPress >= 2) {
-    var increment = redScore + 3;
-    setRedScore(increment);
-    setYPress(0);
-  } else if (yPress === 1) {
-    var incrementt = yPress + 1;
-    setYPress(incrementt);
-  } else {
-    var i = yPress + 1;
-    setYPress(i);
-    setTimeout(() => setYPress(0), 2000);
-  }
 }
 }
 
@@ -178,7 +140,7 @@ const red4 = () => {
   if (location.state.controllers === 1) {
     var inc = redScore + 4;
     setRedScore(inc);
-} else if (location.state.controllers + "" === "2") {
+} else{
   if (xPress > 0) {
     var incr = redScore + 4;
     setRedScore(incr);
@@ -186,19 +148,6 @@ const red4 = () => {
   } else {
     var incre = xPress + 1;
     setXPress(incre);
-    setTimeout(() => setXPress(0), 2000);
-  }
-} else {
-  if (xPress >= 2) {
-    var increment = redScore + 4;
-    setRedScore(increment);
-    setXPress(0);
-  } else if (xPress === 1) {
-    var incrementt = xPress + 1;
-    setXPress(incrementt);
-  } else {
-    var i = xPress + 1;
-    setXPress(i);
     setTimeout(() => setXPress(0), 2000);
   }
 }
@@ -209,7 +158,7 @@ const red5 = () => {
   if (location.state.controllers === 1) {
     var inc = redScore + 5;
     setRedScore(inc);
-} else if (location.state.controllers + "" === "2") {
+} else{
   if (rbPress > 0) {
     var incr = redScore + 5;
     setRedScore(incr);
@@ -219,20 +168,7 @@ const red5 = () => {
     setRBPress(incre);
     setTimeout(() => setRBPress(0), 2000);
   }
-} else {
-  if (rbPress >= 2) {
-    var increment = redScore + 5;
-    setRedScore(increment);
-    setRBPress(0);
-  } else if (rbPress === 1) {
-    var incrementt = rbPress + 1;
-    setRBPress(incrementt);
-  } else {
-    var i = rbPress + 1;
-    setRBPress(i);
-    setTimeout(() => setRBPress(0), 2000);
-  }
-}
+} 
 }
 
 
@@ -240,7 +176,7 @@ const blue1 = () => {
   if (location.state.controllers === 1) {
     var inc = blueScore + 1;
     setBlueScore(inc);
-} else if (location.state.controllers + "" === "2") {
+} else {
   if (dPress > 0) {
     var incr = blueScore + 1;
     setBlueScore(incr);
@@ -250,48 +186,22 @@ const blue1 = () => {
     setDPress(incre);
     setTimeout(() => setDPress(0), 2000);
   }
-} else {
-  if (dPress >= 2) {
-    var increment = blueScore + 1;
-    setBlueScore(increment);
-    setDPress(0);
-  } else if (dPress === 1) {
-    var incrementt = dPress + 1;
-    setDPress(incrementt);
-  } else {
-    var i = dPress + 1;
-    setDPress(i);
-    setTimeout(() => setDPress(0), 2000);
-  }
-}
+} 
 }
 
 
 const blue2 = () => {
   if (location.state.controllers === 1) {
-    var inc = blueScore + 1;
+    var inc = blueScore + 2;
     setBlueScore(inc);
-} else if (location.state.controllers + "" === "2") {
+} else {
   if (lPress > 0) {
-    var incr = blueScore + 1;
+    var incr = blueScore + 2;
     setBlueScore(incr);
     setLPress(0);
   } else {
     var incre = lPress + 1;
     setLPress(incre);
-    setTimeout(() => setLPress(0), 2000);
-  }
-} else {
-  if (lPress >= 2) {
-    var increment = blueScore + 1;
-    setBlueScore(increment);
-    setLPress(0);
-  } else if (lPress === 1) {
-    var incrementt = lPress + 1;
-    setLPress(incrementt);
-  } else {
-    var i = lPress + 1;
-    setLPress(i);
     setTimeout(() => setLPress(0), 2000);
   }
 }
@@ -300,11 +210,11 @@ const blue2 = () => {
 
 const blue3 = () => {
   if (location.state.controllers === 1) {
-    var inc = blueScore + 1;
+    var inc = blueScore + 3;
     setBlueScore(inc);
-} else if (location.state.controllers + "" === "2") {
+} else  {
   if (uPress > 0) {
-    var incr = blueScore + 1;
+    var incr = blueScore + 3;
     setBlueScore(incr);
     setUPress(0);
   } else {
@@ -312,30 +222,17 @@ const blue3 = () => {
     setUPress(incre);
     setTimeout(() => setUPress(0), 2000);
   }
-} else {
-  if (uPress >= 2) {
-    var increment = blueScore + 1;
-    setBlueScore(increment);
-    setUPress(0);
-  } else if (uPress === 1) {
-    var incrementt = uPress + 1;
-    setUPress(incrementt);
-  } else {
-    var i = uPress + 1;
-    setUPress(i);
-    setTimeout(() => setUPress(0), 2000);
-  }
-}
+} 
 }
 
 
 const blue4 = () => {
   if (location.state.controllers === 1) {
-    var inc = blueScore + 1;
+    var inc = blueScore + 4;
     setBlueScore(inc);
-} else if (location.state.controllers + "" === "2") {
+} else {
   if (rPress > 0) {
-    var incr = blueScore + 1;
+    var incr = blueScore + 4;
     setBlueScore(incr);
     setRPress(0);
   } else {
@@ -343,47 +240,21 @@ const blue4 = () => {
     setRPress(incre);
     setTimeout(() => setRPress(0), 2000);
   }
-} else {
-  if (rPress >= 2) {
-    var increment = blueScore + 1;
-    setBlueScore(increment);
-    setRPress(0);
-  } else if (rPress === 1) {
-    var incrementt = rPress + 1;
-    setRPress(incrementt);
-  } else {
-    var i = rPress + 1;
-    setRPress(i);
-    setTimeout(() => setRPress(0), 2000);
-  }
-}
+} 
 }
 
 const blue5 = () => {
   if (location.state.controllers === 1) {
-    var inc = blueScore + 1;
+    var inc = blueScore + 5;
     setBlueScore(inc);
-} else if (location.state.controllers + "" === "2") {
+} else {
   if (lbPress > 0) {
-    var incr = blueScore + 1;
+    var incr = blueScore + 5;
     setBlueScore(incr);
     setLBPress(0);
   } else {
     var incre = lbPress + 1;
     setLBPress(incre);
-    setTimeout(() => setLBPress(0), 2000);
-  }
-} else {
-  if (lbPress >= 2) {
-    var increment = blueScore + 1;
-    setBlueScore(increment);
-    setLBPress(0);
-  } else if (lbPress === 1) {
-    var incrementt = lbPress + 1;
-    setLBPress(incrementt);
-  } else {
-    var i = lbPress + 1;
-    setLBPress(i);
     setTimeout(() => setLBPress(0), 2000);
   }
 }
@@ -402,7 +273,7 @@ const blue5 = () => {
     
     const done = () => {
       if (location.state.rounds === 1) {
-        if (blueScore > blueScore) {
+        if (redScore > blueScore) {
           setWinner("RED");
         } else {
           setWinner("BLUE");
@@ -434,13 +305,13 @@ const blue5 = () => {
     }
 
     const redAdd = () => {
-      var score = blueScore + 1;
-      setBlueScore(score);
+      var score = redScore + 1;
+      setRedScore(score);
     }
 
     const redSub = () => {
-      var score = blueScore - 1;
-      setBlueScore(score);
+      var score = redScore - 1;
+      setRedScore(score);
     }
     
 
